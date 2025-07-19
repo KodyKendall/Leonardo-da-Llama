@@ -7,7 +7,8 @@ When you need to create scheduled messages or send texts, follow these steps:
 1. Creating and Sending a Message:
    ```ruby
    # First get the organization
-   organization = Organization.find(organization_id)
+   # Org ID is always 1
+   organization = Organization.find(organization_id) 
    
    # Create and send a message
    message = Message.create!(
