@@ -75,6 +75,29 @@ GEM
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
     ast (2.4.3)
+    async (2.26.0)
+      console (~> 1.29)
+      fiber-annotation
+      io-event (~> 1.12)
+      metrics (~> 0.12)
+      traces (~> 0.15)
+    async-http (0.89.0)
+      async (>= 2.10.2)
+      async-pool (~> 0.9)
+      io-endpoint (~> 0.14)
+      io-stream (~> 0.6)
+      metrics (~> 0.12)
+      protocol-http (~> 0.49)
+      protocol-http1 (~> 0.30)
+      protocol-http2 (~> 0.22)
+      traces (~> 0.10)
+    async-pool (0.11.0)
+      async (>= 2.0)
+    async-websocket (0.30.0)
+      async-http (~> 0.76)
+      protocol-http (~> 0.34)
+      protocol-rack (~> 0.7)
+      protocol-websocket (~> 0.17)
     base64 (0.3.0)
     benchmark (0.4.1)
     bigdecimal (3.2.2)
@@ -95,14 +118,24 @@ GEM
       xpath (~> 3.2)
     concurrent-ruby (1.3.5)
     connection_pool (2.5.3)
+    console (1.32.0)
+      fiber-annotation
+      fiber-local (~> 1.1)
+      json
     crass (1.0.6)
     date (3.4.1)
     debug (1.11.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    dockerfile-rails (1.7.10)
+      rails (>= 3.0.0)
     drb (2.2.3)
     erb (5.0.2)
     erubi (1.13.1)
+    fiber-annotation (0.2.0)
+    fiber-local (1.1.0)
+      fiber-storage
+    fiber-storage (1.0.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.7)
@@ -112,6 +145,9 @@ GEM
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
     io-console (0.8.1)
+    io-endpoint (0.15.2)
+    io-event (1.12.0)
+    io-stream (0.10.0)
     irb (1.15.2)
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
@@ -122,6 +158,12 @@ GEM
     json (2.13.0)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
+    llama_bot_rails (0.1.13)
+      actioncable (>= 6.0, < 9.0)
+      async
+      async-http
+      async-websocket
+      rails (>= 6.0, < 9.0)
     logger (1.7.0)
     loofah (2.24.1)
       crass (~> 1.0.2)
@@ -133,6 +175,7 @@ GEM
       net-smtp
     marcel (1.0.4)
     matrix (0.4.3)
+    metrics (0.12.2)
     mini_mime (1.1.5)
     minitest (5.25.5)
     msgpack (1.8.0)
@@ -171,6 +214,19 @@ GEM
       prettyprint
     prettyprint (0.2.0)
     prism (1.4.0)
+    protocol-hpack (1.5.1)
+    protocol-http (0.51.0)
+    protocol-http1 (0.34.1)
+      protocol-http (~> 0.22)
+    protocol-http2 (0.22.1)
+      protocol-hpack (~> 1.4)
+      protocol-http (~> 0.47)
+    protocol-rack (0.15.0)
+      io-stream (>= 0.10)
+      protocol-http (~> 0.43)
+      rack (>= 1.0)
+    protocol-websocket (0.20.2)
+      protocol-http (~> 0.2)
     psych (5.2.6)
       date
       stringio
@@ -220,6 +276,10 @@ GEM
     rdoc (6.14.2)
       erb
       psych (>= 4.0.0)
+    redis (5.4.1)
+      redis-client (>= 0.22.0)
+    redis-client (0.25.1)
+      connection_pool
     regexp_parser (2.10.0)
     reline (0.6.1)
       io-console (~> 0.5)
@@ -274,6 +334,7 @@ GEM
     stringio (3.1.7)
     thor (1.4.0)
     timeout (0.4.3)
+    traces (0.15.2)
     turbo-rails (2.0.16)
       actionpack (>= 7.1.0)
       railties (>= 7.1.0)
@@ -314,11 +375,14 @@ DEPENDENCIES
   brakeman
   capybara
   debug
+  dockerfile-rails (>= 1.7)
   importmap-rails
   jbuilder
+  llama_bot_rails
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.2.2, >= 7.2.2.1)
+  redis (~> 5.4)
   rubocop-rails-omakase
   selenium-webdriver
   sprockets-rails

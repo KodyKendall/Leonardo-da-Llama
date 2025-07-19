@@ -55,3 +55,9 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem 'llama_bot_rails'
+# gem 'llama_bot_rails', path: "../../llama_bot_rails_symlink"
+gem "dockerfile-rails", ">= 1.7", group: :development
+
+gem "redis", "~> 5.4"
