@@ -1,13 +1,21 @@
-<div id="message_<%= ((message.sent_to == '4153670657') ? message.sent_from : message.sent_to).parameterize %>" class="message-item">  
+<% if message.sent_to == '4153670657' %>
+  <div id="message_<%= message.sent_from %>" class="message-item">  
   <div class="phone-number">
-    <% if message.sent_to == '4153670657' %>
-      <%= message.sent_from %>
-    <% else %>
-      <%= message.sent_to %>
-    <% end %>
+    <%= message.sent_from %>
   </div>
   <div class="message">
     <%= message.body %>
   </div>
   <hr style="border: 1px solid #ccc; margin: 16px 0;">
 </div>
+<% else %>
+  <div id="message_<%= message.sent_to %>" class="message-item">  
+  <div class="phone-number">
+    <%= message.sent_to %>
+  </div>
+  <div class="message">
+    <%= message.body %>
+  </div>
+  <hr style="border: 1px solid #ccc; margin: 16px 0;">
+</div>
+<% end %>

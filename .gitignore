@@ -8,7 +8,6 @@
 /.bundle
 
 # Ignore all environment files (except templates).
-/.env*
 !/.env*.erb
 
 # Ignore all logfiles and tempfiles.
@@ -52,7 +51,6 @@ tmp/cache/bootsnap/compile-cache-iseq/f8/4ffc29fcc01872
 /.bundle
 
 # Ignore all environment files (except templates).
-/.env*
 !/.env*.erb
 
 # Ignore all logfiles and tempfiles.
@@ -146,8 +144,6 @@ Thumbs.db
 !/config/credentials/
 
 # Ignore any .env files
-.env
-.env.local
 .env.*.local
 
 # Ignore rbenv files
@@ -208,3 +204,4 @@ dump.rdb
 
 log/
 tmp/
+config.bat
