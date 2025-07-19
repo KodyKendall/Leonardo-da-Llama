@@ -2,8 +2,8 @@ require "twilio.rb"
 class MessagesController < ApplicationController
   before_action :set_message, only: %i[ show edit update destroy ]
 
-skip_before_action :authenticate_user!, only: [:inbound_sms]
-skip_before_action :verify_authenticity_token, only: [:inbound_sms]
+  skip_before_action :authenticate_user!, only: [:inbound_sms]
+  skip_before_action :verify_authenticity_token, only: [:inbound_sms, :create]
 
   # GET /messages or /messages.json
 
