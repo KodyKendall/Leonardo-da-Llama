@@ -1,32 +1,13 @@
-<div id="<%= dom_id message %>">
-  <p>
-    <strong>Body:</strong>
+<div id="message_<%= ((message.sent_to == '4153670657') ? message.sent_from : message.sent_to).parameterize %>" class="message-item">  
+  <div class="phone-number">
+    <% if message.sent_to == '4153670657' %>
+      <%= message.sent_from %>
+    <% else %>
+      <%= message.sent_to %>
+    <% end %>
+  </div>
+  <div class="message">
     <%= message.body %>
-  </p>
-
-  <p>
-    <strong>Sent to:</strong>
-    <%= message.sent_to %>
-  </p>
-
-  <p>
-    <strong>Sent from:</strong>
-    <%= message.sent_from %>
-  </p>
-
-  <p>
-    <strong>Twilio sid:</strong>
-    <%= message.twilio_sid %>
-  </p>
-
-  <p>
-    <strong>Twilio error message:</strong>
-    <%= message.twilio_error_message %>
-  </p>
-
-  <p>
-    <strong>Organization:</strong>
-    <%= message.organization_id %>
-  </p>
-
+  </div>
+  <hr style="border: 1px solid #ccc; margin: 16px 0;">
 </div>

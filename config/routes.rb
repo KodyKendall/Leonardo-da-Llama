@@ -1,17 +1,8 @@
 Rails.application.routes.draw do
-  # if Rails.env.development?
-  #   begin
-  #     require 'sidekiq/web'
-  #     mount Sidekiq::Web => '/sidekiq'
-  #   rescue LoadError => e
-  #     Rails.logger.warn "Sidekiq Web UI not available: #{e.message}"
-  #   end
-  # end
-
   resources :contacts
   resources :messages
   # resources :users
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+  devise_for :users, controllers: { registrations: "users/registrations" }
 
   resources :organizations
   mount LlamaBotRails::Engine => "/llama_bot"
@@ -41,4 +32,5 @@ Rails.application.routes.draw do
 
   post "inbound_sms" => "messages#inbound_sms"
 
+  get "message_threads/:phone_number" => "message_threads#index", as: :messages_thread_list
 end

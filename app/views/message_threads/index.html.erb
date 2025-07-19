@@ -1,0 +1,17 @@
+<% content_for :title, "Thread Messages for #{@phone_number}" %>
+
+<h1>Thread Messages</h1>
+
+<%= turbo_stream_from "thread_messages" %>
+
+<%= turbo_frame_tag "thread_messages" do %>
+<% if @thread_messages&.any? %>
+  <% @thread_messages.each do |message| %>
+    <div class="message">
+      <%= message.body %>
+    </div>
+  <% end %>
+<% else %>
+  <p>No messages yet.</p>
+<% end %>
+<% end %>
