@@ -1,4 +1,9 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+  # Mount Sidekiq web interface (you might want to protect this in production)
+  mount Sidekiq::Web => '/sidekiq' if Rails.env.development?
+
   resources :contacts
   resources :messages
   # resources :users
