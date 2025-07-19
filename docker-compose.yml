@@ -1,0 +1,75 @@
+services:
+  db:
+    image: postgres:16
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: llamapress
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5433:5432"
+    networks:
+      - llama-network
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6380:6379"
+    networks:
+      - llama-network
+    volumes:
+      - redis_data:/data
+
+  web:
+    # image: kody06/llamapress:0.1.13
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    stdin_open: true     # <-- enables byebug/irb input
+    tty: true             # <-- attaches terminal output
+    env_file:
+      - .env
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails db:prepare && bundle exec rails s -b '0.0.0.0'"
+    platform: linux/amd64       # ← tells Compose “run this container as amd64 under QEMU”
+
+    volumes:
+      - .:/rails
+      # This mapping is to avoid a permissions issue with the bootsnap cache.
+      - bootsnap_cache:/rails/tmp/cache/bootsnap
+    ports:
+      - "3000:3000"
+    networks:
+      - llama-network
+    environment:
+      - RAILS_ENV=development
+      - DATABASE_URL=postgres://user:password@db:5432/llamapress
+      - BUNDLE_PATH=/usr/local/bundle
+      - REDIS_URL=redis://redis:6379/1
+      - BOOTSNAP_CACHE_DIR=/rails/tmp/cache/bootsnap
+    depends_on:
+      - db
+      - redis
+
+  llamabot-backend:
+    image: kody06/llamabot:0.1.12
+    env_file:
+      - .env
+    environment:
+      - DB_URI=postgres://user:password@db:5432/llamapress
+    command: bash -c "python init_pg_checkpointer.py --uri $$DB_URI && uvicorn main:app --host 0.0.0.0 --port 8000"
+    ports:
+      - "8000:8000"
+    networks:
+      - llama-network
+
+volumes:
+  postgres_data:
+  redis_data:
+  bundle_cache:
+  bootsnap_cache: 
+
+# Declare the external network
+networks:
+  llama-network:
+    name: llama-network

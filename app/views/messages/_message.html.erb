@@ -1,0 +1,32 @@
+<div id="<%= dom_id message %>">
+  <p>
+    <strong>Body:</strong>
+    <%= message.body %>
+  </p>
+
+  <p>
+    <strong>Sent to:</strong>
+    <%= message.sent_to %>
+  </p>
+
+  <p>
+    <strong>Sent from:</strong>
+    <%= message.sent_from %>
+  </p>
+
+  <p>
+    <strong>Twilio sid:</strong>
+    <%= message.twilio_sid %>
+  </p>
+
+  <p>
+    <strong>Twilio error message:</strong>
+    <%= message.twilio_error_message %>
+  </p>
+
+  <p>
+    <strong>Organization:</strong>
+    <%= message.organization_id %>
+  </p>
+
+</div>
