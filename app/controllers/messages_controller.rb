@@ -18,7 +18,7 @@ skip_before_action :verify_authenticity_token, only: [:inbound_sms]
   def new
     @message = current_organization.messages.new
   end
-  
+
   # GET /messages/1/edit
   def edit
   end
@@ -59,6 +59,10 @@ skip_before_action :verify_authenticity_token, only: [:inbound_sms]
       format.html { redirect_to messages_path, status: :see_other, notice: "Message was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def inbound_sms
+    #TODO:
   end
 
   private
