@@ -19,8 +19,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  root "messages#home"
-  get "messages/home" => "messages#home"
+  root "messages#index"
+  # get "messages/home" => "messages#home"
 
     resources :twilio do
     collection do
