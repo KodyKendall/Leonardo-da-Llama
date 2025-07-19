@@ -1,3 +1,14 @@
+GIT
+  remote: https://github.com/KodyKendall/llama_bot_rails.git
+  revision: 853b8c74cbe8d658e4e388e1623f67303697d2fb
+  specs:
+    llama_bot_rails (0.1.13)
+      actioncable (>= 6.0, < 9.0)
+      async
+      async-http
+      async-websocket
+      rails (>= 6.0, < 9.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -178,12 +189,6 @@ GEM
       base64
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
-    llama_bot_rails (0.1.13)
-      actioncable (>= 6.0, < 9.0)
-      async
-      async-http
-      async-websocket
-      rails (>= 6.0, < 9.0)
     logger (1.7.0)
     loofah (2.24.1)
       crass (~> 1.0.2)
@@ -414,7 +419,7 @@ DEPENDENCIES
   dotenv-rails (~> 3.1)
   importmap-rails
   jbuilder
-  llama_bot_rails
+  llama_bot_rails!
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.2.2, >= 7.2.2.1)
