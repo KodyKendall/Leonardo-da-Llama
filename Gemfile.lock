@@ -423,6 +423,8 @@ DEPENDENCIES
   llama_bot_rails
   pg (~> 1.1)
   puma (>= 5.0)
+  rack (~> 3.0)
+  rackup
   rails (~> 7.2.2, >= 7.2.2.1)
   redis (~> 5.4)
   rubocop-rails-omakase
