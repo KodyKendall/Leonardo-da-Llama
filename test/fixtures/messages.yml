@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  body: MyString
+  sent_to: MyString
+  sent_from: MyString
+  twilio_sid: MyString
+  twilio_error_message: MyString
+  organization: one
+
+two:
+  body: MyString
+  sent_to: MyString
+  sent_from: MyString
+  twilio_sid: MyString
+  twilio_error_message: MyString
+  organization: two

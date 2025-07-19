@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
-  resources :users
+  # resources :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
+
   resources :organizations
   mount LlamaBotRails::Engine => "/llama_bot"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -16,6 +17,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  devise_for :users, controllers: { registrations: 'users/registrations' }
   root "messages#index"
 end
