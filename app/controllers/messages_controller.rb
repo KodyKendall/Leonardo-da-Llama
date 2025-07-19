@@ -9,6 +9,7 @@ class MessagesController < ApplicationController
 
   # GET /messages or /messages.json
   def index
+    @messages = current_organization.messages
     # org_number = current_organization.twilio_number
     # if params[:conversation_partner]
     #   @conversation_partner = params[:conversation_partner]
