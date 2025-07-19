@@ -20,26 +20,94 @@ When you need to create scheduled messages or send texts, follow these steps:
    
    # Deliver the message using Twilio
    message.deliver!  # This internally calls Twilio.send_text(sent_to, body, organization.twilio_number)
-   
-
    ```
 
 2. Creating a Scheduled Task:
+   
+   A. One-time Scheduled Task:
    ```ruby
-   # Schedule a message task
+   # Schedule a one-time message task
    ScheduledTask.create!(
-     name: "Your task name",
+     name: "One-time Message",
+     recurring: false,  # one-time task
      enabled: true,
      job_class: "LlamaBotTaskJob",  # This is the default
      agent_name: "llamabot",        # This is the default
-     prompt: "Send a scheduled message -    message = Message.create!( body: "Your message content",sent_to: "recipient_phone_number",sent_from: organization.twilio_number, organization_id: organization.id) # Deliver the message using Twilio message.deliver!  # This internally calls Twilio.send_text(sent_to, body, organization.twilio_number)",
+     prompt: "Send a scheduled message - message = Message.create!(body: 'Your message content', sent_to: 'recipient_phone_number', sent_from: organization.twilio_number, organization_id: organization.id); message.deliver!",
      args: {
        sent_to: "+1234567890",
        body: "Your scheduled message",
        organization_id: 1  # Replace with actual org id
      },
-     last_run_at: nil,     # Will be updated when task runs
      next_run_at: 1.day.from_now  # When you want this to run
+   )
+   ```
+
+   B. Recurring Task Examples:
+   ```ruby
+   # Every 30 minutes
+   ScheduledTask.create!(
+     name: 'Frequent Check',
+     recurring: true,
+     recurrence_unit: 'minutes',
+     recurrence_value: 30,
+     enabled: true,
+     job_class: "LlamaBotTaskJob",
+     prompt: "Your task instructions here",
+     args: { organization_id: 1 }
+   )
+
+   # Every 2 hours
+   ScheduledTask.create!(
+     name: 'Bi-hourly Task',
+     recurring: true,
+     recurrence_unit: 'hours',
+     recurrence_value: 2,
+     enabled: true,
+     job_class: "LlamaBotTaskJob",
+     prompt: "Your task instructions here",
+     args: { organization_id: 1 }
+   )
+
+   # Every day at 2:30 PM
+   ScheduledTask.create!(
+     name: 'Daily Report',
+     recurring: true,
+     recurrence_unit: 'days',
+     recurrence_value: 1,
+     scheduled_time: Time.parse('14:30'),
+     enabled: true,
+     job_class: "LlamaBotTaskJob",
+     prompt: "Your task instructions here",
+     args: { organization_id: 1 }
+   )
+
+   # Every Monday and Wednesday at 9:00 AM
+   ScheduledTask.create!(
+     name: 'Bi-weekly Meeting',
+     recurring: true,
+     recurrence_unit: 'weeks',
+     recurrence_value: 1,
+     scheduled_time: Time.parse('09:00'),
+     scheduled_days: ['monday', 'wednesday'],
+     enabled: true,
+     job_class: "LlamaBotTaskJob",
+     prompt: "Your task instructions here",
+     args: { organization_id: 1 }
+   )
+
+   # First of every month at noon
+   ScheduledTask.create!(
+     name: 'Monthly Report',
+     recurring: true,
+     recurrence_unit: 'months',
+     recurrence_value: 1,
+     scheduled_time: Time.parse('12:00'),
+     scheduled_day_of_month: 1,
+     enabled: true,
+     job_class: "LlamaBotTaskJob",
+     prompt: "Your task instructions here",
+     args: { organization_id: 1 }
    )
    ```
 
@@ -50,12 +118,16 @@ Important Rules:
 - Use organization.twilio_number as the sent_from number
 - Handle any potential errors in message creation or delivery
 - Phone numbers should be in E.164 format (e.g., "+1234567890")
-- Set next_run_at to control when the task should execute
+- For recurring tasks, use the appropriate recurrence settings:
+  - 'minutes' or 'hours': Just set recurrence_unit and recurrence_value
+  - 'days': Add scheduled_time for specific time of day
+  - 'weeks': Add scheduled_time and scheduled_days for specific days
+  - 'months': Add scheduled_time and scheduled_day_of_month for specific day
 
 Example Usage:
 - For immediate messages: Use Message.create! and deliver!
-- For scheduled messages: Create a ScheduledTask with the message details in args
+- For one-time scheduled messages: Create a non-recurring ScheduledTask with next_run_at
+- For recurring messages: Create a recurring ScheduledTask with appropriate recurrence settings
 - Direct Twilio usage: Twilio.send_text(to, body, from)
-
 
 Org ID is always 1
