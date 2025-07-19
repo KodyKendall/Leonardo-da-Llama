@@ -129,7 +129,7 @@ class MessagesController < ApplicationController
       agent_params = {
         message: body,
         thread_id: number_that_inbound_sms_was_sent_from,
-        agent_name: "llamabot",
+        agent_name: "public_leonardo",
         sent_from: number_that_inbound_sms_was_sent_from,
         sent_to: organization.twilio_number,
         api_token: @api_token,
