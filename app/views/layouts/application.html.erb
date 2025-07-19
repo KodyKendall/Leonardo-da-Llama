@@ -16,7 +16,7 @@
   <%= stylesheet_link_tag 'all.min', media: 'all', 'data-turbo-track': 'reload' %>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
   <%= javascript_importmap_tags %>
-  <%= javascript_include_tag 'main', defer: true %>
+  <%= javascript_include_tag 'main', defer: true %>\
   <link rel="manifest" href="/manifest.json">
   <link rel="icon" href="<%= asset_path('Leonardo-da-Llama-removebg-preview.png') %>" type="image/png">
   <link rel="icon" href="<%= asset_path('Leonardo-da-Llama-removebg-preview.png') %>" type="image/png">
@@ -31,10 +31,6 @@
         <span class="brand-title hide-on-mobile" style="font-size: 2rem; font-weight: bold; margin-left: 0.5em; vertical-align: middle;">Leonardo da Llama</span>
       <% end %>
       <nav role="navigation" class="nav-menu" data-navigation>
-        <%= link_to 'Pricing', '#', class: 'nav-link' %>
-        <%= link_to 'Docs ↗', 'https://mintlify.com', class: 'nav-link', target: '_blank' %>
-        <%= link_to 'Blog ↗', 'https://substack.com', class: 'nav-link', target: '_blank' %>
-        <%= link_to 'Careers ↗', 'https://wellfound.com', class: 'nav-link', target: '_blank' %>
         <div class="button-group stacked margin-top-l mobile-only">
           <% if user_signed_in? %>
             <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'button tertiary' %>
@@ -47,7 +43,6 @@
       <div class="button-group">
         <a href="https://github.com/kodykendall/leonardo-da-llama" class="button ghost compact hide-on-mobile">
           <div class="fa-brands fa-github icon l"></div>
-          <div class="paragraph s tertiary">42K</div>
         </a>
         <% if user_signed_in? %>
           <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'button tertiary compact hide-on-mobile' %>
@@ -80,11 +75,11 @@
         </div>
         <div>
           <div class="link-list">
-            <a href="#" class="ui s">Pricing</a>
-            <a href="#" class="ui s">Licenses</a>
-            <a href="https://mintlify.com" class="ui s" target="_blank">Docs ↗</a>
-            <a href="https://substack.com" class="ui s" target="_blank">Blog ↗</a>
-            <a href="https://wellfound.com" class="ui s" target="_blank">Careers ↗</a>
+            <a href="https://llamapress.ai/pricing" class="ui s">Pricing</a>
+            <a href="https://llamapress.ai/licenses" class="ui s">Licenses</a>
+            <a href="https://llamapress.ai" class="ui s" target="_blank">Docs ↗</a>
+            <a href="https://llamapress.ai" class="ui s" target="_blank">Blog ↗</a>
+            <a href="https://llamapress.ai" class="ui s" target="_blank">Careers ↗</a>
           </div>
         </div>
         <div>
@@ -93,11 +88,11 @@
               <div class="fa-brands fa-github icon m color-accent"></div>
               <div class="pseudo-link">GitHub</div>
             </a>
-            <a href="https://www.linkedin.com" class="icon-link ui s" target="_blank">
+            <a href="https://www.linkedin.com/in/kodykendall" class="icon-link ui s" target="_blank">
               <div class="fa-brands fa-linkedin icon m color-accent"></div>
               <div class="pseudo-link">LinkedIn</div>
             </a>
-            <a href="https://x.com" class="icon-link ui s" target="_blank">
+            <a href="https://x.com/kodykendall" class="icon-link ui s" target="_blank">
               <div class="fa-brands fa-x-twitter icon m color-accent"></div>
               <div class="pseudo-link">X.com</div>
             </a>
