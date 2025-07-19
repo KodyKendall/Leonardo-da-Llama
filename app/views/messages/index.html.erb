@@ -4,8 +4,14 @@
 
 <h1>Messages</h1>
 
-<% if @messages %>
- 
+<% if @messages&.any? %>
+  <% @messages.each do |message| %>
+    <div class="message">
+      <%= message.body %>
+    </div>
+  <% end %>
+<% else %>
+  <p>No messages yet.</p>
 <% end %>
 
 <%= link_to "New message", new_message_path %>
