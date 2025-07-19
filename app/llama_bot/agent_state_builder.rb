@@ -2,7 +2,6 @@
 #
 # Customize the params sent to your LangGraph agent here.
 # Uncomment the line in the initializer to activate this builder.
-module LeonardoDaLlama
   class AgentStateBuilder
     def initialize(params:, context:)
       @params = params
@@ -19,4 +18,3 @@ module LeonardoDaLlama
       }
     end
   end
-end 
