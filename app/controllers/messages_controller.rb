@@ -1,9 +1,13 @@
+require "twilio.rb"
 class MessagesController < ApplicationController
   before_action :set_message, only: %i[ show edit update destroy ]
 
+skip_before_action :authenticate_user!, only: [:inbound_sms]
+skip_before_action :verify_authenticity_token, only: [:inbound_sms]
+
   # GET /messages or /messages.json
   def index
-    @messages = Message.all
+    @messages = current_organization.messages
   end
 
   # GET /messages/1 or /messages/1.json
@@ -12,9 +16,9 @@ class MessagesController < ApplicationController
 
   # GET /messages/new
   def new
-    @message = Message.new
+    @message = current_organization.messages.new
   end
-
+  
   # GET /messages/1/edit
   def edit
   end

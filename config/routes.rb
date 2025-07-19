@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :contacts
   # resources :users
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
@@ -18,4 +19,15 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   root "messages#index"
+
+    resources :twilio do
+    collection do
+      get :get_available_twilio_phone_numbers_for_purchase
+      post :message_status_from_twilio
+      post :purchase_available_phone_number
+    end
+  end
+
+  post "inbound_sms" => "messages#inbound_sms"
+
 end
