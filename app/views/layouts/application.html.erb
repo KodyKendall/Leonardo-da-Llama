@@ -18,16 +18,17 @@
   <%= javascript_importmap_tags %>
   <%= javascript_include_tag 'main', defer: true %>
   <link rel="manifest" href="/manifest.json">
-  <link rel="icon" href="/icon.png" type="image/png">
-  <link rel="icon" href="/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/icon.png">
+  <link rel="icon" href="<%= asset_path('Leonardo-da-Llama-removebg-preview.png') %>" type="image/png">
+  <link rel="icon" href="<%= asset_path('Leonardo-da-Llama-removebg-preview.png') %>" type="image/png">
+  <link rel="apple-touch-icon" href="<%= asset_path('Leonardo-da-Llama-removebg-preview.png') %>" type="image/png">
 </head>
 <body>
   <div class="background-gradient"></div>
   <div class="page-container">
     <header class="nav-container">
       <%= link_to root_path, class: "nav-brand" do %>
-        <img src="<%= asset_path('Logo-Template.svg') %>" width="132" height="28" alt="Logo Template" />
+        <img src="<%= asset_path('Leonardo-da-Llama-removebg-preview.png') %>" style="height: 60px; width: auto;" alt="Leonardo Da Llama Logo" />
+        <span class="brand-title hide-on-mobile" style="font-size: 2rem; font-weight: bold; margin-left: 0.5em; vertical-align: middle;">Leonardo da Llama</span>
       <% end %>
       <nav role="navigation" class="nav-menu" data-navigation>
         <%= link_to 'Pricing', '#', class: 'nav-link' %>

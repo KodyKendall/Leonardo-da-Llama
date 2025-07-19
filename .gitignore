@@ -38,3 +38,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+log/development.log
+tmp/cache/bootsnap/load-path-cache
+tmp/cache/bootsnap/compile-cache-iseq/f2/fdd592d6893100
+tmp/cache/bootsnap/compile-cache-iseq/f8/4ffc29fcc01872
