@@ -2,3 +2,17 @@
 //= link_directory ../stylesheets .css
 //= link_tree ../../javascript .js
 //= link_tree ../../../vendor/javascript .js
+//= link main.js
+//= link pricing.js
+//= link index.css
+//= link tablet.css
+//= link mobile.css
+//= link all.min.css
+//= link fa-solid-900.woff2
+//= link fa-solid-900.ttf
+//= link fa-brands-400.woff2
+//= link fa-brands-400.ttf
+//= link fa-regular-400.woff2
+//= link fa-regular-400.ttf
+//= link fa-v4compatibility.woff2
+//= link fa-v4compatibility.ttf

@@ -1,43 +1,114 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= content_for(:title) || "Leonardo Da Llama" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<html lang="en" class="theme-light">
+<head>
+  <meta charset="utf-8" />
+  <title><%= content_for(:title) || "Leonardo Da Llama" %></title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= yield :head %>
 
-    <%= yield :head %>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&display=swap" rel="stylesheet">
-    
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
-
-  <body>
-    <nav class="navbar">
-      <div class="navbar-brand">
-        <%= link_to root_path, class: "brand-link" do %>
-          <svg class="home-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-            <polyline points="9,22 9,12 15,12 15,22"></polyline>
-          </svg>
-          Leonardo da Llama
-        <% end %>
-      </div>
-      <div class="navbar-actions">
+  <!-- Vendor CSS/Font Awesome -->
+  <%= stylesheet_link_tag 'index', media: 'all', 'data-turbo-track': 'reload' %>
+  <%= stylesheet_link_tag 'tablet', media: 'all', 'data-turbo-track': 'reload' %>
+  <%= stylesheet_link_tag 'mobile', media: 'all', 'data-turbo-track': 'reload' %>
+  <%= stylesheet_link_tag 'all.min', media: 'all', 'data-turbo-track': 'reload' %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+  <%= javascript_importmap_tags %>
+  <%= javascript_include_tag 'main', defer: true %>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/icon.png" type="image/png">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icon.png">
+</head>
+<body>
+  <div class="background-gradient"></div>
+  <div class="page-container">
+    <header class="nav-container">
+      <%= link_to root_path, class: "nav-brand" do %>
+        <img src="<%= asset_path('Logo-Template.svg') %>" width="132" height="28" alt="Logo Template" />
+      <% end %>
+      <nav role="navigation" class="nav-menu" data-navigation>
+        <%= link_to 'Pricing', '#', class: 'nav-link' %>
+        <%= link_to 'Docs ↗', 'https://mintlify.com', class: 'nav-link', target: '_blank' %>
+        <%= link_to 'Blog ↗', 'https://substack.com', class: 'nav-link', target: '_blank' %>
+        <%= link_to 'Careers ↗', 'https://wellfound.com', class: 'nav-link', target: '_blank' %>
+        <div class="button-group stacked margin-top-l mobile-only">
+          <% if user_signed_in? %>
+            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'button tertiary' %>
+          <% else %>
+            <%= link_to 'Sign In', new_user_session_path, class: 'button tertiary' %>
+            <%= link_to 'Sign Up', new_user_registration_path, class: 'button primary' %>
+          <% end %>
+        </div>
+      </nav>
+      <div class="button-group">
+        <a href="https://github.com" class="button ghost compact hide-on-mobile">
+          <div class="fa-brands fa-github icon l"></div>
+          <div class="paragraph s tertiary">42K</div>
+        </a>
         <% if user_signed_in? %>
-          <%= link_to "Sign Out", destroy_user_session_path, data: { method: :delete, turbo_method: :delete }, class: "btn btn-outline" %>
+          <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'button tertiary compact hide-on-mobile' %>
+        <% else %>
+          <%= link_to 'Sign In', new_user_session_path, class: 'button tertiary compact hide-on-mobile' %>
+          <%= link_to 'Sign Up', new_user_registration_path, class: 'button primary compact' %>
+        <% end %>
+        <button class="button ghost compact nav-hamburger" data-mobile-toggle>
+          <span class="fa-solid fa-bars icon m"></span>
+        </button>
+      </div>
+    </header>
+    <% if flash.any? %>
+      <div class="flash-messages">
+        <% flash.each do |type, msg| %>
+          <div class="alert alert-<%= type %>"><%= msg %></div>
         <% end %>
       </div>
-    </nav>
-    <%= yield %>
-  </body>
+    <% end %>
+    <main>
+      <%= yield %>
+    </main>
+    <footer class="footer">
+      <div class="footer-menu">
+        <div>
+          <p class="paragraph s">
+            © 2025 LoremIpsumInc<br />By <a href="https://evilmartians.com" target="_blank">Evil Martians</a>, product
+            consulting for developer tools<br />Built with <a href="https://launchkit.evilmartians.io" target="_blank">LaunchKit</a>
+          </p>
+        </div>
+        <div>
+          <div class="link-list">
+            <a href="#" class="ui s">Pricing</a>
+            <a href="#" class="ui s">Licenses</a>
+            <a href="https://mintlify.com" class="ui s" target="_blank">Docs ↗</a>
+            <a href="https://substack.com" class="ui s" target="_blank">Blog ↗</a>
+            <a href="https://wellfound.com" class="ui s" target="_blank">Careers ↗</a>
+          </div>
+        </div>
+        <div>
+          <div class="link-list">
+            <a href="https://github.com" class="icon-link ui s" target="_blank">
+              <div class="fa-brands fa-github icon m color-accent"></div>
+              <div class="pseudo-link">GitHub</div>
+            </a>
+            <a href="https://www.linkedin.com" class="icon-link ui s" target="_blank">
+              <div class="fa-brands fa-linkedin icon m color-accent"></div>
+              <div class="pseudo-link">LinkedIn</div>
+            </a>
+            <a href="https://x.com" class="icon-link ui s" target="_blank">
+              <div class="fa-brands fa-x-twitter icon m color-accent"></div>
+              <div class="pseudo-link">X.com</div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="link-list-horizontal">
+        <a href="#" class="ui s tertiary">Privacy Policy</a>
+        <a href="#" class="ui s tertiary">Terms of Service</a>
+        <a href="#" class="ui s tertiary">Cookie Policy</a>
+      </div>
+    </footer>
+  </div>
+</body>
 </html>

@@ -12,6 +12,10 @@
  *
  *= require_tree .
  *= require_self
+ *= require index
+ *= require tablet
+ *= require mobile
+ *= require all.min
  */
 
 /* Font Family Setup */
