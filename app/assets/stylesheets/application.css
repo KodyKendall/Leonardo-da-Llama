@@ -93,6 +93,71 @@ code, pre, kbd, samp {
   color: white;
 }
 
+/* Form Styling */
+.form-styled {
+  max-width: 480px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  border: 1px solid #e5e7eb;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #222;
+}
+
+.form-control {
+  padding: 0.6rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  background: #f9fafb;
+  transition: border-color 0.2s;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  outline: none;
+  background: #fff;
+}
+
+.form-errors {
+  background: #fff0f0;
+  border: 1px solid #ffb3b3;
+  color: #b91c1c;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn.primary {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.7rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+.btn.primary:hover, .btn.primary:focus {
+  background: #0056b3;
+  color: #fff;
+}
+
 /* Responsive navbar */
 @media (max-width: 768px) {
   .navbar {
@@ -106,5 +171,13 @@ code, pre, kbd, samp {
   .btn {
     padding: 0.4rem 0.8rem;
     font-size: 0.9rem;
+  }
+}
+
+/* Responsive form */
+@media (max-width: 600px) {
+  .form-styled {
+    padding: 1rem;
+    max-width: 98vw;
   }
 }

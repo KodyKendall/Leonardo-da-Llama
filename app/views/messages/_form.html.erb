@@ -1,8 +1,7 @@
-<%= form_with(model: message) do |form| %>
+<%= form_with(model: message, html: { class: 'form-styled' }) do |form| %>
   <% if message.errors.any? %>
-    <div style="color: red">
+    <div class="form-errors">
       <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
-
       <ul>
         <% message.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,37 +10,37 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.text_field :body %>
+  <div class="form-group">
+    <%= form.label :body %>
+    <%= form.text_field :body, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :sent_to, style: "display: block" %>
-    <%= form.text_field :sent_to %>
+  <div class="form-group">
+    <%= form.label :sent_to %>
+    <%= form.text_field :sent_to, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :sent_from, style: "display: block" %>
-    <%= form.text_field :sent_from %>
+  <div class="form-group">
+    <%= form.label :sent_from %>
+    <%= form.text_field :sent_from, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :twilio_sid, style: "display: block" %>
-    <%= form.text_field :twilio_sid %>
+  <div class="form-group">
+    <%= form.label :twilio_sid %>
+    <%= form.text_field :twilio_sid, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :twilio_error_message, style: "display: block" %>
-    <%= form.text_field :twilio_error_message %>
+  <div class="form-group">
+    <%= form.label :twilio_error_message %>
+    <%= form.text_field :twilio_error_message, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :organization_id, style: "display: block" %>
-    <%= form.text_field :organization_id %>
+  <div class="form-group">
+    <%= form.label :organization_id %>
+    <%= form.text_field :organization_id, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.submit nil, class: 'btn primary' %>
   </div>
 <% end %>

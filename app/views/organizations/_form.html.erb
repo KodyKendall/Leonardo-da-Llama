@@ -1,8 +1,7 @@
-<%= form_with(model: organization) do |form| %>
+<%= form_with(model: organization, html: { class: 'form-styled' }) do |form| %>
   <% if organization.errors.any? %>
-    <div style="color: red">
+    <div class="form-errors">
       <h2><%= pluralize(organization.errors.count, "error") %> prohibited this organization from being saved:</h2>
-
       <ul>
         <% organization.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,17 +10,17 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :twilio_number, style: "display: block" %>
-    <%= form.text_field :twilio_number %>
+  <div class="form-group">
+    <%= form.label :twilio_number %>
+    <%= form.text_field :twilio_number, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.submit nil, class: 'btn primary' %>
   </div>
 <% end %>
