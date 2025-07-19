@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_19_205243) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_19_221129) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -94,6 +94,14 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_19_205243) do
     t.datetime "updated_at", null: false
     t.text "prompt"
     t.string "agent_name", default: "llamabot"
+    t.boolean "recurring"
+    t.string "recurrence_unit"
+    t.integer "recurrence_value"
+    t.time "scheduled_time"
+    t.string "scheduled_days"
+    t.integer "scheduled_day_of_month"
+    t.datetime "ends_at"
+    t.index ["recurrence_value"], name: "index_scheduled_tasks_on_recurrence_value"
   end
 
   create_table "users", force: :cascade do |t|
