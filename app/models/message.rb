@@ -15,12 +15,7 @@ class Message < ApplicationRecord
       broadcast_append_to "messages"
     else
       puts "Broadcasting replace   message to user message_#{user}"
-      broadcast_replace_to "message_#{user}", target: "message_#{user}", partial: "messages/message", locals: { message: self }
+      broadcast_replace_to "messages", target: "message_#{user}", partial: "messages/message", locals: { message: self }
     end
   end
 end
-
-
-# message_thread = MessageThread.new(organization)
-#     @messages = message_thread.all_organization_threads
-#     broadcast_replace_to "messages"
