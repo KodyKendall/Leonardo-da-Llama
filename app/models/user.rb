@@ -4,4 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   belongs_to :organization
+
+  validates :phone_number, phone: true, allow_blank: false
 end

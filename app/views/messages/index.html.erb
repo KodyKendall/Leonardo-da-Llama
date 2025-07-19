@@ -4,14 +4,13 @@
 
 <h1>Messages</h1>
 
+<%= turbo_stream_from "messages" %>
+
+<%= turbo_frame_tag "messages" do %>
+<hr style="border: 1px solid #ccc; margin: 16px 0;">
 <% if @messages&.any? %>
-  <% @messages.each do |message| %>
-    <div class="message">
-      <%= message.body %>
-    </div>
-  <% end %>
+  <%= render @messages %>
 <% else %>
   <p>No messages yet.</p>
 <% end %>
-
-<%= link_to "New message", new_message_path %>
+<% end %>

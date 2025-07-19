@@ -18,6 +18,7 @@ default_user = User.find_or_create_by!(email: "kody@llamapress.ai") do |user|
   user.password = "123456"
   user.password_confirmation = "123456"
   user.organization = default_org
+  user.phone_number = "8013499924"
 end
 
 # Create contact for the other phone number
@@ -70,7 +71,7 @@ sample_messages = [
 sample_messages.each_with_index do |msg_data, index|
   # Space out the messages by a few minutes each
   created_time = index.minutes.ago
-  
+
   Message.find_or_create_by!(twilio_sid: msg_data[:twilio_sid]) do |message|
     message.body = msg_data[:body]
     message.sent_from = msg_data[:sent_from]
