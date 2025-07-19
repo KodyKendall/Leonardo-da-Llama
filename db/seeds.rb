@@ -15,8 +15,8 @@ end
 # Create default user
 default_user = User.find_or_create_by!(email: "kody@llamapress.ai") do |user|
   user.name = "kody@llamapress.ai"
-  user.password = "password123"
-  user.password_confirmation = "password123"
+  user.password = "123456"
+  user.password_confirmation = "123456"
   user.organization = default_org
 end
 
