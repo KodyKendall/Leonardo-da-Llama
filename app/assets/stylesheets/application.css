@@ -14,6 +14,21 @@
  *= require_self
  */
 
+/* Font Family Setup */
+:root {
+  --font-mono: "Martian Mono", "Monaco", "Menlo", "Ubuntu Mono", monospace;
+}
+
+/* Apply Martian Mono to specific elements */
+code, pre, kbd, samp {
+  font-family: var(--font-mono);
+}
+
+/* Optional: Apply to specific UI elements that would benefit from monospace */
+.code, .monospace {
+  font-family: var(--font-mono);
+}
+
 /* Navbar Styles */
 .navbar {
   display: flex;

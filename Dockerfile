@@ -45,10 +45,7 @@ RUN apt-get update -qq && \
       build-essential \
       git \
       libpq-dev \
-      pkg-config \
-      nodejs \
-      npm --fix-missing && \
-    npm install -g yarn && \
+      pkg-config && \
     apt-get clean
 
 # Install application gems
@@ -57,9 +54,7 @@ RUN bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
     bundle exec bootsnap precompile --gemfile
 
-# Install node modules
-COPY package.json yarn.lock ./
-RUN yarn install --production
+
 
 # Copy application code
 COPY . .
