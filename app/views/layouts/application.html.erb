@@ -16,7 +16,7 @@
   <%= stylesheet_link_tag 'all.min', media: 'all', 'data-turbo-track': 'reload' %>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
   <%= javascript_importmap_tags %>
-  <%= javascript_include_tag 'main', defer: true %>\
+  <%= javascript_include_tag 'main', defer: true %>
   <link rel="manifest" href="/manifest.json">
   <link rel="icon" href="<%= asset_path('Leonardo-da-Llama-removebg-preview.png') %>" type="image/png">
   <link rel="icon" href="<%= asset_path('Leonardo-da-Llama-removebg-preview.png') %>" type="image/png">
@@ -33,7 +33,11 @@
       <nav role="navigation" class="nav-menu" data-navigation>
         <div class="button-group stacked margin-top-l mobile-only">
           <% if user_signed_in? %>
-            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'button tertiary' %>
+              <form action="<%= destroy_user_session_path %>" method="post" style="display:inline;">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <input type="hidden" name="_method" value="delete">
+          <button type="submit" class="button tertiary">Sign Out</button>
+        </form>
           <% else %>
             <%= link_to 'Sign In', new_user_session_path, class: 'button tertiary' %>
             <%= link_to 'Sign Up', new_user_registration_path, class: 'button primary' %>
