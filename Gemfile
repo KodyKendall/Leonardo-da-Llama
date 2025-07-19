@@ -56,8 +56,10 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem 'llama_bot_rails'
+# gem 'llama_bot_rails'
 # gem 'llama_bot_rails', path: "../../llama_bot_rails_symlink"
+gem 'llama_bot_rails', git: "https://github.com/KodyKendall/llama_bot_rails.git"
+
 gem "dockerfile-rails", ">= 1.7", group: :development
 
 gem "redis", "~> 5.4"
