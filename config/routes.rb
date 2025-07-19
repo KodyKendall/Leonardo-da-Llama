@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :contacts
+  resources :messages
   # resources :users
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
