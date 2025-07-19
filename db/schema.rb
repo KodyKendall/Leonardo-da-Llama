@@ -10,9 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_19_173310) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_19_205243) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "checkpoint_blobs", primary_key: ["thread_id", "checkpoint_ns", "channel", "version"], force: :cascade do |t|
+    t.text "thread_id", null: false
+    t.text "checkpoint_ns", default: "", null: false
+    t.text "channel", null: false
+    t.text "version", null: false
+    t.text "type", null: false
+    t.binary "blob"
+    t.index ["thread_id"], name: "checkpoint_blobs_thread_id_idx"
+  end
+
+  create_table "checkpoint_migrations", primary_key: "v", id: :integer, default: nil, force: :cascade do |t|
+  end
+
+  create_table "checkpoint_writes", primary_key: ["thread_id", "checkpoint_ns", "checkpoint_id", "task_id", "idx"], force: :cascade do |t|
+    t.text "thread_id", null: false
+    t.text "checkpoint_ns", default: "", null: false
+    t.text "checkpoint_id", null: false
+    t.text "task_id", null: false
+    t.integer "idx", null: false
+    t.text "channel", null: false
+    t.text "type"
+    t.binary "blob", null: false
+    t.text "task_path", default: "", null: false
+    t.index ["thread_id"], name: "checkpoint_writes_thread_id_idx"
+  end
+
+  create_table "checkpoints", primary_key: ["thread_id", "checkpoint_ns", "checkpoint_id"], force: :cascade do |t|
+    t.text "thread_id", null: false
+    t.text "checkpoint_ns", default: "", null: false
+    t.text "checkpoint_id", null: false
+    t.text "parent_checkpoint_id"
+    t.text "type"
+    t.jsonb "checkpoint", null: false
+    t.jsonb "metadata", default: {}, null: false
+    t.index ["thread_id"], name: "checkpoints_thread_id_idx"
+  end
 
   create_table "contacts", force: :cascade do |t|
     t.string "first_name"
@@ -43,6 +80,20 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_19_173310) do
     t.string "twilio_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "scheduled_tasks", force: :cascade do |t|
+    t.string "name"
+    t.string "cron_schedule"
+    t.string "job_class", default: "LlamaBotTaskJob"
+    t.json "args"
+    t.boolean "enabled"
+    t.datetime "last_run_at"
+    t.datetime "next_run_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "prompt"
+    t.string "agent_name", default: "llamabot"
   end
 
   create_table "users", force: :cascade do |t|
