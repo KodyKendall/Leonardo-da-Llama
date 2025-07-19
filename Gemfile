@@ -63,3 +63,5 @@ gem "dockerfile-rails", ">= 1.7", group: :development
 gem "redis", "~> 5.4"
 
 gem "byebug", "~> 12.0", groups: [:development, :test]
+
+gem "devise", "~> 4.9"
