@@ -7,7 +7,6 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-
 # Create default organization
 default_org = Organization.find_or_create_by!(twilio_number: "4153670657") do |org|
   org.name = "Default Organization"
