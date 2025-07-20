@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/KodyKendall/llama_bot_rails.git
-  revision: b58d0f9ca4f3c5e101a9367bb87766b70ab63119
+  revision: 0c8dc204504c500245db23c16ca49ec1e06de91f
   specs:
     llama_bot_rails (0.1.13)
       actioncable (>= 6.0, < 9.0)
