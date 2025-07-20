@@ -347,6 +347,12 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    sidekiq (7.3.9)
+      base64
+      connection_pool (>= 2.3.0)
+      logger
+      rack (>= 2.2.4)
+      redis-client (>= 0.22.2)
     sprockets (4.2.2)
       concurrent-ruby (~> 1.0)
       logger
@@ -417,10 +423,13 @@ DEPENDENCIES
   llama_bot_rails
   pg (~> 1.1)
   puma (>= 5.0)
+  rack (~> 3.0)
+  rackup
   rails (~> 7.2.2, >= 7.2.2.1)
   redis (~> 5.4)
   rubocop-rails-omakase
   selenium-webdriver
+  sidekiq (~> 7.2)
   sprockets-rails
   stimulus-rails
   turbo-rails

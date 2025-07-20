@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  # if Rails.env.development?
+  #   begin
+  #     require 'sidekiq/web'
+  #     mount Sidekiq::Web => '/sidekiq'
+  #   rescue LoadError => e
+  #     Rails.logger.warn "Sidekiq Web UI not available: #{e.message}"
+  #   end
+  # end
+
   resources :contacts
   resources :messages
   # resources :users

@@ -13,3 +13,79 @@
  *= require_tree .
  *= require_self
  */
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand .brand-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  gap: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.navbar-brand .brand-link:hover {
+  color: #007bff;
+}
+
+.home-icon {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  background: none;
+  font-family: inherit;
+}
+
+.btn-outline {
+  color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-outline:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Responsive navbar */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
+  
+  .navbar-brand .brand-link {
+    font-size: 1.25rem;
+  }
+  
+  .btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
