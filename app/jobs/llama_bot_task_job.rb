@@ -1,6 +1,7 @@
 class LlamaBotTaskJob
   include Sidekiq::Job
   include LlamaBotRails::ControllerExtensions
+  include LlamaBotRails::AgentAuth
 
   def perform(task_id)
     task = ScheduledTask.find(task_id)

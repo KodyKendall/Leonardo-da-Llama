@@ -19,3 +19,7 @@ class Message < ApplicationRecord
     end
   end
 end
+
+# message_thread = MessageThread.new(organization)
+#     @messages = message_thread.all_organization_threads
+#     broadcast_replace_to "messages"
