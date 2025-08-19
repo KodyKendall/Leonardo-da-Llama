@@ -67,6 +67,6 @@ gem "byebug", "~> 12.0", groups: [:development, :test]
 
 gem "devise", "~> 4.9"
 
-gem "twilio-ruby", "~> 7.6"
+gem "twilio-ruby", "~> 7.7"
 
 gem "dotenv-rails", "~> 3.1"
